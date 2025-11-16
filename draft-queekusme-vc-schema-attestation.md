@@ -98,9 +98,9 @@ parameters. A request sent with `application/x-www-form-urlencoded` parameters *
 
 The following parameters are defined to be included in the request to the Request URI Endpoint:
 
-* `issuer`: OPTIONAL. The Issuer to receive attestation information for if present in the Attestation Document
-* `verifier`: OPTIONAL. The Verifier to receive attestation information for if present in the Attestation Document
-* `nonce`: OPTIONAL. A nonce ensuring the freshness of the signature in JWT responses
+* `issuer`: **OPTIONAL**. The Issuer to receive attestation information for if present in the Attestation Document
+* `verifier`: **OPTIONAL**. The Verifier to receive attestation information for if present in the Attestation Document
+* `nonce`: **OPTIONAL**. A nonce ensuring the freshness of the signature in JWT responses
 
 A `POST` Request with no Request Parameters **MUST** be handled the same as a `GET` request to the same well-known
 endpoint.
@@ -162,13 +162,13 @@ The specification defines the following JWT claims:
   the [@!I-D.ietf-oauth-sd-jwt-vc] `vct` URL.
 * `sub#integrity`: REQUIRED. A string containing the [@!W3C.SRI] integrity of the Schema Document this Attestation
   points to.
-* `authorized_issuers`: OPTIONAL. An array of strings containing the issuers which are authorised to issue credentials
+* `authorized_issuers`: **OPTIONAL**. An array of strings containing the issuers which are authorised to issue credentials
   matching the Schema. `authorized_issuers` **MAY** be an empty array. Children of `authorized_issuers` **SHOULD** be
   Selectively Disclosable.
-* `authorized_verifiers`: OPTIONAL. An array of strings containing the verifiers which are authorised to issue
+* `authorized_verifiers`: **OPTIONAL**. An array of strings containing the verifiers which are authorised to issue
   credentials matching the Schema. `authorized_issuers` **MAY** be an empty array. Children of `authorized_verifiers`
   **SHOULD** be Selectively Disclosable.
-* `nonce`: **REQUIRED** if included in `POST` Request Parameters, otherwise OPTIONAL. The nonce provided by the
+* `nonce`: **REQUIRED** if included in `POST` Request Parameters, otherwise **OPTIONAL**. The nonce provided by the
   requester, ensures signature freshness
 
 All other properties are mandatory claims and **MUST NOT** be selectively Disclosable.
