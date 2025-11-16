@@ -1347,13 +1347,13 @@ parameters. A request sent with <code>application/x-www-form-urlencoded</code> p
 <p id="section-2.1.2-2">The following parameters are defined to be included in the request to the Request URI Endpoint:<a href="#section-2.1.2-2" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-2.1.2-3.1">
-              <code>issuer</code>: OPTIONAL. The Issuer to receive attestation information for if present in the Attestation Document<a href="#section-2.1.2-3.1" class="pilcrow">¶</a>
+              <code>issuer</code>: <span class="bcp14">OPTIONAL</span>. The Issuer to receive attestation information for if present in the Attestation Document<a href="#section-2.1.2-3.1" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-2.1.2-3.2">
-              <code>verifier</code>: OPTIONAL. The Verifier to receive attestation information for if present in the Attestation Document<a href="#section-2.1.2-3.2" class="pilcrow">¶</a>
+              <code>verifier</code>: <span class="bcp14">OPTIONAL</span>. The Verifier to receive attestation information for if present in the Attestation Document<a href="#section-2.1.2-3.2" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-2.1.2-3.3">
-              <code>nonce</code>: OPTIONAL. A nonce ensuring the freshness of the signature in JWT responses<a href="#section-2.1.2-3.3" class="pilcrow">¶</a>
+              <code>nonce</code>: <span class="bcp14">OPTIONAL</span>. A nonce ensuring the freshness of the signature in JWT responses<a href="#section-2.1.2-3.3" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-2.1.2-4">A <code>POST</code> Request with no Request Parameters <span class="bcp14">MUST</span> be handled the same as a <code>GET</code> request to the same well-known
@@ -1442,17 +1442,17 @@ the <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-
 points to.<a href="#section-2.2.2-3.3" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-2.2.2-3.4">
-              <code>authorized_issuers</code>: OPTIONAL. An array of strings containing the issuers which are authorised to issue credentials
+              <code>authorized_issuers</code>: <span class="bcp14">OPTIONAL</span>. An array of strings containing the issuers which are authorised to issue credentials
 matching the Schema. <code>authorized_issuers</code> <span class="bcp14">MAY</span> be an empty array. Children of <code>authorized_issuers</code> <span class="bcp14">SHOULD</span> be
 Selectively Disclosable.<a href="#section-2.2.2-3.4" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-2.2.2-3.5">
-              <code>authorized_verifiers</code>: OPTIONAL. An array of strings containing the verifiers which are authorised to issue
+              <code>authorized_verifiers</code>: <span class="bcp14">OPTIONAL</span>. An array of strings containing the verifiers which are authorised to issue
 credentials matching the Schema. <code>authorized_issuers</code> <span class="bcp14">MAY</span> be an empty array. Children of <code>authorized_verifiers</code>
               <span class="bcp14">SHOULD</span> be Selectively Disclosable.<a href="#section-2.2.2-3.5" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-2.2.2-3.6">
-              <code>nonce</code>: <span class="bcp14">REQUIRED</span> if included in <code>POST</code> Request Parameters, otherwise OPTIONAL. The nonce provided by the
+              <code>nonce</code>: <span class="bcp14">REQUIRED</span> if included in <code>POST</code> Request Parameters, otherwise <span class="bcp14">OPTIONAL</span>. The nonce provided by the
 requester, ensures signature freshness<a href="#section-2.2.2-3.6" class="pilcrow">¶</a>
 </li>
           </ul>
