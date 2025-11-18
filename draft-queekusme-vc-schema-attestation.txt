@@ -3,9 +3,9 @@
 
 
 TODO Workgroup                                              A.J. Kennedy
-Internet-Draft                                          16 November 2025
+Internet-Draft                                          18 November 2025
 Intended status: Standards Track                                        
-Expires: 20 May 2026
+Expires: 22 May 2026
 
 
                 Verifiable Credential Schema Attestation
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 May 2026.
+   This Internet-Draft will expire on 22 May 2026.
 
 Copyright Notice
 
@@ -252,23 +252,24 @@ Table of Contents
       integrity of the Schema Document this Attestation points to.
    *  authorized_issuers: OPTIONAL.  An array of strings containing the
       issuers which are authorised to issue credentials matching the
-      Schema. authorized_issuers MAY be an empty array.  Children of
-      authorized_issuers SHOULD be Selectively Disclosable.
+      Schema. authorized_issuers MAY be an empty array.
+      authorized_issuers and its values SHOULD be Selectively
+      Disclosable.
    *  authorized_verifiers: OPTIONAL.  An array of strings containing
       the verifiers which are authorised to issue credentials matching
-      the Schema. authorized_issuers MAY be an empty array.  Children of
-      authorized_verifiers SHOULD be Selectively Disclosable.
+      the Schema. authorized_issuers MAY be an empty array.
+      authorized_verifiers and its values SHOULD be Selectively
+      Disclosable.
    *  nonce: REQUIRED if included in POST Request Parameters, otherwise
       OPTIONAL.  The nonce provided by the requester, ensures signature
       freshness
 
-   All other properties are mandatory claims and MUST NOT be selectively
-   Disclosable.
+   REQUIRED claims MUST NOT be Selectively Disclosable.
 
    JWT claims iat, nbf and exp SHOULD be used to establish timeframes
    for the acceptance and disposal of expired Attestation JWTs.  These
    claims are all OPTIONAL when returned as a plain application/json
-   document.
+   document and MUST NOT be Selectively Disclosable in SD-JWT responses.
 
 2.2.2.1.  authorized_issuers format
 
