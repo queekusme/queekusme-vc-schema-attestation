@@ -157,24 +157,25 @@ responses
 
 The specification defines the following JWT claims:
 
-* `iss`: REQUIRED. The issuer of the document, **MUST** be a [@W3C.DID] identifier
-* `sub`: REQUIRED. The string schema document URL. This being the [@W3C.VCDM] `credentialSchema`.`id` URL or
+* `iss`: **REQUIRED**. The issuer of the document, **MUST** be a [@W3C.DID] identifier
+* `sub`: **REQUIRED**. The string schema document URL. This being the [@W3C.VCDM] `credentialSchema`.`id` URL or
   the [@!I-D.ietf-oauth-sd-jwt-vc] `vct` URL.
-* `sub#integrity`: REQUIRED. A string containing the [@!W3C.SRI] integrity of the Schema Document this Attestation
+* `sub#integrity`: **REQUIRED**. A string containing the [@!W3C.SRI] integrity of the Schema Document this Attestation
   points to.
 * `authorized_issuers`: **OPTIONAL**. An array of strings containing the issuers which are authorised to issue credentials
-  matching the Schema. `authorized_issuers` **MAY** be an empty array. Children of `authorized_issuers` **SHOULD** be
+  matching the Schema. `authorized_issuers` **MAY** be an empty array. `authorized_issuers` and its values **SHOULD** be
   Selectively Disclosable.
 * `authorized_verifiers`: **OPTIONAL**. An array of strings containing the verifiers which are authorised to issue
-  credentials matching the Schema. `authorized_issuers` **MAY** be an empty array. Children of `authorized_verifiers`
+  credentials matching the Schema. `authorized_issuers` **MAY** be an empty array. `authorized_verifiers` and its values
   **SHOULD** be Selectively Disclosable.
 * `nonce`: **REQUIRED** if included in `POST` Request Parameters, otherwise **OPTIONAL**. The nonce provided by the
   requester, ensures signature freshness
 
-All other properties are mandatory claims and **MUST NOT** be selectively Disclosable.
+**REQUIRED** claims **MUST NOT** be Selectively Disclosable.
 
 JWT claims `iat`, `nbf` and `exp` **SHOULD** be used to establish timeframes for the acceptance and disposal of expired
-Attestation JWTs. These claims are all **OPTIONAL** when returned as a plain `application/json` document.
+Attestation JWTs. These claims are all **OPTIONAL** when returned as a plain `application/json` document and **MUST NOT**
+be Selectively Disclosable in SD-JWT responses.
 
 #### `authorized_issuers` format
 
