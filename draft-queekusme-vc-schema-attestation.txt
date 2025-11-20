@@ -63,24 +63,26 @@ Table of Contents
      1.3.  Terms and Definitions
      1.4.  Verifiable Credential Schema documents
    2.  Verifiable Credential Schema Attestation Document
-     2.1.  Schema Attestation Document
-       2.1.1.  Schema Attestation Document Claims
-       2.1.2.  Schema Document Attestation Well-known Endpoint
-       2.1.3.  Request Parameters
-     2.2.  Schema Attestation Document Response
-       2.2.1.  Example
-       2.2.2.  JOSE Header
-     2.3.  Verifying Schema Attestation Documents
-       2.3.1.  Verifying Issuers in authorized_issuers
-       2.3.2.  Verifying verifiers in authorized_verifiers
-     2.4.  Schema Extension
-   3.  Security Considerations
-     3.1.  Issuer/Verifier Request for Information Discovery
-     3.2.  Schema Extension as a method for attaining a trusted
+     2.1.  Schema Attestation Document Claims
+       2.1.1.  Selective Disclosure
+       2.1.2.  Examples
+   3.  Schema Attestation Document Request
+     3.1.  Schema Document Attestation Well-known Endpoint
+     3.2.  Request Parameters
+   4.  Schema Attestation Document Response
+     4.1.  Example
+     4.2.  JOSE Header
+   5.  Verifying Schema Attestation Documents
+     5.1.  Verifying Issuers in authorized_issuers
+     5.2.  Verifying verifiers in authorized_verifiers
+   6.  Schema Extension
+   7.  Security Considerations
+     7.1.  Issuer/Verifier Request for Information Discovery
+     7.2.  Schema Extension as a method for attaining a trusted
            status.
-   4.  References
-     4.1.  Normative References
-     4.2.  Informative References
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Appendix A.  IANA Considerations
      A.1.  JSON Web Token Claims Registration
      A.2.  Well-Known URI Registry
@@ -149,14 +151,12 @@ Table of Contents
 
 2.  Verifiable Credential Schema Attestation Document
 
-2.1.  Schema Attestation Document
-
    The Schema Attestation Document is a Selective Disclosure JWT
    [I-D.ietf-oauth-selective-disclosure-jwt] which attests to the
    validity to issue or verify a Verifiable Credential of a specific
    Schema.
 
-2.1.1.  Schema Attestation Document Claims
+2.1.  Schema Attestation Document Claims
 
    The specification defines the following JWT claims:
 
@@ -179,7 +179,7 @@ Table of Contents
    JWT claims iat, nbf and exp SHOULD be used to establish timeframes
    for the acceptance and disposal of expired Attestation JWTs
 
-2.1.1.1.  Selective Disclosure
+2.1.1.  Selective Disclosure
 
    The Selective Disclosure JWT Response SHOULD use Decoy Digests to
    disguise the actual number of authorized issuers and verifiers.
@@ -194,7 +194,7 @@ Table of Contents
    Selectively Disclosable, all array values of authorized_issuers and
    authorized_verifiers SHOULD be Selectively Disclosable.
 
-2.1.1.2.  Examples
+2.1.2.  Examples
 
    The following is a non-normative example of the raw attestation data
    of an unsecured payload of a Schema Attestation Document:
@@ -270,7 +270,9 @@ Table of Contents
       [{"...":
       "cDj-sHSautcsQkWGSUOc5aiwQCbbyI6RO8flo1bWx6Q"}]]
 
-2.1.2.  Schema Document Attestation Well-known Endpoint
+3.  Schema Attestation Document Request
+
+3.1.  Schema Document Attestation Well-known Endpoint
 
    Schema designers MAY make a Schema Attestation Document available at
    the location formed by inserting the well known string /.well-known/
@@ -291,7 +293,7 @@ Table of Contents
    POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
    Host: example.com
 
-2.1.3.  Request Parameters
+3.2.  Request Parameters
 
    The following parameters are defined to be included in the request to
    the Request URI Endpoint:
@@ -313,7 +315,7 @@ Table of Contents
 
    issuer=http%3A%2F%2Fexample.com%2Fissuer
 
-2.2.  Schema Attestation Document Response
+4.  Schema Attestation Document Response
 
    A successful response MUST use the 200 OK HTTP.  The Content-Type
    header MUST be application/sd-jwt.
@@ -321,7 +323,7 @@ Table of Contents
    The document MUST return any issuer or verifier Disclosure matching
    the issuer or verifier provided in any Request Parameters.
 
-2.2.1.  Example
+4.1.  Example
 
    The following is a non-normative example of a Schema Attestation
    Document Response including Disclosures for attesting issuer
@@ -334,8 +336,8 @@ Table of Contents
    vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
    zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
    pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.zPM9_8aHNyObb5-pA9Stqdg
-   BUV21hrvJaT_q5Fk5h1zk5R9XjOIqbny5gV8cJYjfILF1KyWNVL7M5omWXJVOgw~WyJl
+   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.9ahg1UikmfcOvhWXPoUmQge
+   PXEQnKE6sGFoOYogpy0ejuoaK18HI2YnWcpeuD3jH-lBWNqwpckMoUKlRY_nG_A~WyJl
    bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
    LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
    XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
@@ -356,7 +358,7 @@ Table of Contents
      ]
    }
 
-2.2.2.  JOSE Header
+4.2.  JOSE Header
 
    The typ value in the JOSE Header MUST be schema-attestation+sd-jwt.
 
@@ -367,7 +369,7 @@ Table of Contents
      "typ": "schema-attestation+sd-jwt"
    }
 
-2.3.  Verifying Schema Attestation Documents
+5.  Verifying Schema Attestation Documents
 
    Recipients of a Schema Attestation Document MUST verify the returned
    SD-JWT.
@@ -375,7 +377,7 @@ Table of Contents
    Verification of the issuer of a Schema Attestation Document MUST
    follow current Best Practices for verifying JWT signatures.
 
-2.3.1.  Verifying Issuers in authorized_issuers
+5.1.  Verifying Issuers in authorized_issuers
 
    For an Issuer to be attested as Authorized to issue a Credential
    matching the respective Schema the value in the issuer claim of a
@@ -383,7 +385,7 @@ Table of Contents
    [I-D.ietf-oauth-sd-jwt-vc] Credential MUST be present in the
    authorized_issuers array.
 
-2.3.2.  Verifying verifiers in authorized_verifiers
+5.2.  Verifying verifiers in authorized_verifiers
 
    For a verifier to be attested as Authorised to receive a Credential
    matching the respective Schema the value in the authorized_verifiers
@@ -395,7 +397,7 @@ Table of Contents
    *  TODO: Identify other methods for identifying verifiers within a
       credential request
 
-2.4.  Schema Extension
+6.  Schema Extension
 
    [I-D.ietf-oauth-sd-jwt-vc] permits vct documents to extend from
    another vct document.  As a Schema Attestation Document attests for a
@@ -405,9 +407,9 @@ Table of Contents
    Schema Document Requests MUST NOT inherit Attestation from higher
    order Schema Attestation Documents.
 
-3.  Security Considerations
+7.  Security Considerations
 
-3.1.  Issuer/Verifier Request for Information Discovery
+7.1.  Issuer/Verifier Request for Information Discovery
 
    Requests to the well-known endpoint MAY use the issuer and verifier
    Request parameters in order to perform information discovery on the
@@ -419,7 +421,7 @@ Table of Contents
    Nonce values which are reused SHOULD be rejected if multiple requests
    from the same requester are received with the same nonce value.
 
-3.2.  Schema Extension as a method for attaining a trusted status.
+7.2.  Schema Extension as a method for attaining a trusted status.
 
    An attacker MAY extend a known Schema document and provide their own
    Schema Attestation document in order to show themselves as 'verified'
@@ -445,9 +447,9 @@ Table of Contents
    Verifiers SHOULD ensure that the Schema in use within a Verifiable
    Credential matches the expected Schema.
 
-4.  References
+8.  References
 
-4.1.  Normative References
+8.1.  Normative References
 
    [I-D.ietf-oauth-sd-jwt-vc]
               Terbu, O., Fett, D., and B. Campbell, "SD-JWT-based
@@ -477,7 +479,7 @@ Table of Contents
               "Subresource Integrity", 23 June 2016,
               <https://www.w3.org/TR/SRI/>.
 
-4.2.  Informative References
+8.2.  Informative References
 
    [IANA.well-known]
               IANA, "Well-Known URIs",
@@ -503,8 +505,7 @@ A.1.  JSON Web Token Claims Registration
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): [[ Section 2.1.1 of this specification
-      ]]
+   *  Specification Document(s): [[ Section 2.1 of this specification ]]
 
    *  Claim Name: "authorized_issuers"
 
@@ -512,8 +513,7 @@ A.1.  JSON Web Token Claims Registration
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): [[ Section 2.1.1 of this specification
-      ]]
+   *  Specification Document(s): [[ Section 2.1 of this specification ]]
 
    *  Claim Name: "authorized_verifiers"
 
@@ -521,14 +521,13 @@ A.1.  JSON Web Token Claims Registration
 
    *  Change Controller: IETF
 
-   *  Specification Document(s): [[ Section 2.1.1 of this specification
-      ]]
+   *  Specification Document(s): [[ Section 2.1 of this specification ]]
 
 A.2.  Well-Known URI Registry
 
-   This specification requests the well-known URI defined in
-   Section 2.1.2 in the IANA "Well-Known URIs" registry
-   [IANA.well-known] established by [RFC5785].
+   This specification requests the well-known URI defined in Section 3.1
+   in the IANA "Well-Known URIs" registry [IANA.well-known] established
+   by [RFC5785].
 
 Appendix B.  Acknowledgements
 
