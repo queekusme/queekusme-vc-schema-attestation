@@ -160,8 +160,7 @@ Table of Contents
 
    The specification defines the following JWT claims:
 
-   *  iss: REQUIRED.  The issuer of the document, MUST be a [W3C.DID]
-      identifier
+   *  iss: REQUIRED.  The issuer of the document
    *  sub: REQUIRED.  The string schema document URL.  This being the
       [W3C.VCDM] credentialSchema.id URL or the
       [I-D.ietf-oauth-sd-jwt-vc] vct URL.
@@ -332,8 +331,8 @@ Table of Contents
    vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
    zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
    pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.FwW81vNNE-R-YUkZu3A1Jj0
-   debXAB-ao984MxXx7hxHek8VddExz7UFiwDeCq6J6g49BAsBzXpBpejGxJow_pg~WyJl
+   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.4eOeTqs5xP7QGqb28eDIJbr
+   qiuILnTONADkZhiZ1yQO_Ezs55nSHIV7Wn8665VikkPVYUft_i6XkA5eUJwBw-w~WyJl
    bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
    LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
    XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
@@ -486,10 +485,6 @@ Table of Contents
               Heenan, "OpenID for Verifiable Presentations 1.0", 9 July
               2025, <https://openid.net/specs/openid-4-verifiable-
               presentations-1_0.html>.
-
-   [W3C.DID]  Sporny, M., Longley, D., Sabadello, M., Reed, D., Steele,
-              O., and C. Allen, "Decentralized Identifiers (DIDs) v1.0",
-              19 July 2022, <https://www.w3.org/TR/did-1.0/>.
 
    [W3C.VCDM] Sporny, M., Longley, D., Chadwick, D., and O. Steele,
               "Verifiable Credentials Data Model v2.0", 10 February
