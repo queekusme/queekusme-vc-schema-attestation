@@ -171,7 +171,7 @@ Parameters.
 ## Example
 
 The following is a non-normative example of a Schema Attestation Response including Disclosures for attesting
-issuer `http://example.com/issuer` provided via request parameters"
+issuer `http://example.com/issuer` provided via request parameters.
 
 <{{examples/01/sd_jwt_presentation.txt}}
 
