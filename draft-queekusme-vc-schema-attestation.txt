@@ -15,7 +15,7 @@ Abstract
 
    This specification defines request and response formats for Attesting
    Issuers and Verifiers for individual Verifiable Credential Schema via
-   a Schema Attestation Document
+   a Schema Attestation
 
 Discussion Venues
 
@@ -61,18 +61,18 @@ Table of Contents
      1.1.  Trust in the Issuer-Holder-Verifier Model
      1.2.  Requirements Notation and Conventions
      1.3.  Terms and Definitions
-     1.4.  Verifiable Credential Schema documents
-   2.  Verifiable Credential Schema Attestation Document
-     2.1.  Schema Attestation Document Claims
+     1.4.  Verifiable Credential Schema
+   2.  Verifiable Credential Schema Attestation
+     2.1.  Schema Attestation Claims
        2.1.1.  Selective Disclosure
        2.1.2.  Examples
-   3.  Schema Attestation Document Request
-     3.1.  Schema Document Attestation Well-known Endpoint
+   3.  Schema Attestation Request
+     3.1.  Schema Attestation Well-known Endpoint
      3.2.  Request Parameters
-   4.  Schema Attestation Document Response
+   4.  Schema Attestation Response
      4.1.  Example
      4.2.  JOSE Header
-   5.  Verifying Schema Attestation Documents
+   5.  Verifying Schema Attestation
      5.1.  Verifying Issuers in authorized_issuers
      5.2.  Verifying verifiers in authorized_verifiers
    6.  Schema Extension
@@ -130,14 +130,14 @@ Table of Contents
       that is cryptographically secured by an Issuer (usually by a
       digital signature).
 
-1.4.  Verifiable Credential Schema documents
+1.4.  Verifiable Credential Schema
 
    Verifiable Credential Schema are documents which define the structure
    of verifiable credentials in a manner which allows verifiers and
    other external software and tooling to determine if a Credential
-   conforms to the schema design.
+   conforms to the Schema design.
 
-   The Verifiable Credential formats which utilize schema documents are:
+   The Verifiable Credential formats which utilize Schema are:
 
    *  W3C Verifiable Credential Data Model (VCDM) 2.0 [W3C.VCDM] which
       uses JSON-LD as its structure definition
@@ -146,26 +146,25 @@ Table of Contents
 
    MDoc Credential formats are outside of the scope of this document
 
-   Both [W3C.VCDM] and [I-D.ietf-oauth-sd-jwt-vc] permit schema document
-   definition via URL request.
+   Both [W3C.VCDM] and [I-D.ietf-oauth-sd-jwt-vc] permit Schema
+   Definition via URL request.
 
-2.  Verifiable Credential Schema Attestation Document
+2.  Verifiable Credential Schema Attestation
 
-   The Schema Attestation Document is a Selective Disclosure JWT
+   The Schema Attestation is a Selective Disclosure JWT
    [I-D.ietf-oauth-selective-disclosure-jwt] which attests to the
    validity to issue or verify a Verifiable Credential of a specific
    Schema.
 
-2.1.  Schema Attestation Document Claims
+2.1.  Schema Attestation Claims
 
    The specification defines the following JWT claims:
 
    *  iss: REQUIRED.  The issuer of the document
-   *  sub: REQUIRED.  The string schema document URL.  This being the
-      [W3C.VCDM] credentialSchema.id URL or the
-      [I-D.ietf-oauth-sd-jwt-vc] vct URL.
+   *  sub: REQUIRED.  The string Schema URL.  This being the [W3C.VCDM]
+      credentialSchema.id URL or the [I-D.ietf-oauth-sd-jwt-vc] vct URL.
    *  sub#integrity: REQUIRED.  A string containing the [W3C.SRI]
-      integrity of the Schema Document this Attestation points to.
+      integrity of the Schema this Attestation points to.
    *  authorized_issuers: OPTIONAL.  An array of strings containing the
       issuers which are authorised to issue credentials matching the
       Schema. authorized_issuers MAY be an empty array.
@@ -197,7 +196,7 @@ Table of Contents
 2.1.2.  Examples
 
    The following is a non-normative example of the raw attestation data
-   of an unsecured payload of a Schema Attestation Document:
+   of an unsecured payload of a Schema Attestation:
 
    {
      "sub": "http://example.com/example-credential.json",
@@ -270,27 +269,27 @@ Table of Contents
       [{"...":
       "cDj-sHSautcsQkWGSUOc5aiwQCbbyI6RO8flo1bWx6Q"}]]
 
-3.  Schema Attestation Document Request
+3.  Schema Attestation Request
 
-3.1.  Schema Document Attestation Well-known Endpoint
+3.1.  Schema Attestation Well-known Endpoint
 
-   Schema designers MAY make a Schema Attestation Document available at
-   the location formed by inserting the well known string /.well-known/
-   schema-attestation between the host component and the path component
+   Schema designers MAY make a Schema Attestation available at the
+   location formed by inserting the well known string /.well-known/
+   Schema-attestation between the host component and the path component
    of the Schema URL.
 
-   If a Schema Attestation Document is not made available at the well-
-   known address, trust SHOULD defer back to other methods for
-   determining trust.
+   If a Schema Attestation is not made available at the well-known
+   address, trust SHOULD defer back to other methods for determining
+   trust.
 
-   Requests to the well-known Schema Attestation Document Endpoint MUST
-   be made via a HTTP POST Request.
+   Requests to the well-known Schema Attestation Endpoint MUST be made
+   via a HTTP POST Request.
 
    The following is a non-normative example of a HTTP request for the
-   Schema Attestation Document when the Schema Document url is
-   http://example.com/example-credential.json
+   Schema Attestation when the Schema url is http://example.com/example-
+   credential.json
 
-   POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
+   POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
    Host: example.com
 
 3.2.  Request Parameters
@@ -299,23 +298,23 @@ Table of Contents
    the Request URI Endpoint:
 
    *  issuer: OPTIONAL.  The Issuer to receive attestation information
-      for if present in the Attestation Document
+      for if present in the Schema Attestation
    *  verifier: OPTIONAL.  The Verifier to receive attestation
-      information for if present in the Attestation Document
+      information for if present in the Schema Attestation
    *  nonce: REQUIRED.  A nonce ensuring the freshness of the signature
       in JWT responses
 
    The following is a non-normative example of a HTTP request for the
-   Schema Attestation Document requesting attestation information for an
-   issuer http://example.com/issuer
+   Schema Attestation requesting attestation information for an issuer
+   http://example.com/issuer
 
-   POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
+   POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
    Host: example.com
    Content-Type: application/x-www-form-urlencoded
 
    issuer=http%3A%2F%2Fexample.com%2Fissuer
 
-4.  Schema Attestation Document Response
+4.  Schema Attestation Response
 
    A successful response MUST use the 200 OK HTTP.  The Content-Type
    header MUST be application/sd-jwt.
@@ -326,7 +325,7 @@ Table of Contents
 4.1.  Example
 
    The following is a non-normative example of a Schema Attestation
-   Document Response including Disclosures for attesting issuer
+   Response including Disclosures for attesting issuer
    http://example.com/issuer provided via request parameters"
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogInNjaGVtYS1hdHRlc3RhdGlvbitzZC1qd3Qi
@@ -336,16 +335,16 @@ Table of Contents
    vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
    zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
    pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.9ahg1UikmfcOvhWXPoUmQge
-   PXEQnKE6sGFoOYogpy0ejuoaK18HI2YnWcpeuD3jH-lBWNqwpckMoUKlRY_nG_A~WyJl
+   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.OCeFUWcgxbyOIzTiOi3tabX
+   dUCiRBXHolamlAX3uRISzYl2xzIIddHqntuwG7_KSi45L_CdGmaqbbiN0IykOkA~WyJl
    bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
    LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
    XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
    3N1ZXIiXQ~
 
    Below is a non-normative example of the verified SD-JWT claims the
-   recipient of a Schema Attestation Document would receive when
-   resolving Selective Disclosures in a Schema Attestation Document.
+   recipient of a Schema Attestation would receive when resolving
+   Selective Disclosures in a Schema Attestation.
 
    {
      "iss": "https://example.com/issuer",
@@ -360,22 +359,21 @@ Table of Contents
 
 4.2.  JOSE Header
 
-   The typ value in the JOSE Header MUST be schema-attestation+sd-jwt.
+   The typ value in the JOSE Header MUST be Schema-attestation+sd-jwt.
 
    The following is a non-normative example of a decoded SD-JWT header:
 
    {
      "alg": "ES256",
-     "typ": "schema-attestation+sd-jwt"
+     "typ": "Schema-attestation+sd-jwt"
    }
 
-5.  Verifying Schema Attestation Documents
+5.  Verifying Schema Attestation
 
-   Recipients of a Schema Attestation Document MUST verify the returned
-   SD-JWT.
+   Recipients of a Schema Attestation MUST verify the returned SD-JWT.
 
-   Verification of the issuer of a Schema Attestation Document MUST
-   follow current Best Practices for verifying JWT signatures.
+   Verification of the issuer of a Schema Attestation MUST follow
+   current Best Practices for verifying JWT signatures.
 
 5.1.  Verifying Issuers in authorized_issuers
 
@@ -400,22 +398,22 @@ Table of Contents
 6.  Schema Extension
 
    [I-D.ietf-oauth-sd-jwt-vc] permits vct documents to extend from
-   another vct document.  As a Schema Attestation Document attests for a
-   specific version of a Schema document, the document the vct extends
-   from MAY have its own attestation document.
+   another vct document.  As a Schema Attestation attests for a specific
+   version of a Schema, the document the vct extends from MAY have its
+   own Schema Attestation.
 
-   Schema Document Requests MUST NOT inherit Attestation from higher
-   order Schema Attestation Documents.
+   Schema Requests MUST NOT inherit Attestation from higher order Schema
+   Attestation.
 
 7.  Security Considerations
 
 7.1.  Issuer/Verifier Request for Information Discovery
 
    Requests to the well-known endpoint MAY use the issuer and verifier
-   Request parameters in order to perform information discovery on the
-   Disclosures within a the Attestation Document.
+   Request Parameters in order to perform information discovery on the
+   Disclosures within a Schema Attestation.
 
-   Schema Attestation Document Providers SHOULD make effort to prevent
+   Schema Attestation Providers SHOULD make effort to prevent
    Information Discovery utilizing methods such as Rate Limiting.
 
    Nonce values which are reused SHOULD be rejected if multiple requests
@@ -423,16 +421,15 @@ Table of Contents
 
 7.2.  Schema Extension as a method for attaining a trusted status.
 
-   An attacker MAY extend a known Schema document and provide their own
-   Schema Attestation document in order to show themselves as 'verified'
-   to Wallets and Verifiers.
+   An attacker MAY extend a known Schema and provide their own Schema
+   Attestation in order to show themselves as 'verified' to Wallets and
+   Verifiers.
 
    Whilst extension remains a valid method for building upon existing
-   schema, Wallets SHOULD NOT treat extended documents as an attempt to
+   Schema, Wallets SHOULD NOT treat extended documents as an attempt to
    bypass trust.  Wallets SHOULD show credentials with extended Schema
    as Trusted, so long as the issuer is correctly included as an
-   authorized_issuers in the extended Schema's Schema Attestation
-   Document.
+   authorized_issuers in the extended Schema's Schema Attestation.
 
    [OAUTH.OID4VP] includes the specification for Digital Credentials
    Query Language (DCQL).  DCQL introduces meta which allows for the
