@@ -8,7 +8,7 @@
 <meta content="Annabelle Kennedy" name="author">
 <meta content="
        This specification defines request and response formats for Attesting Issuers and Verifiers for individual Verifiable
-Credential Schema via a Schema Attestation 
+Credential Schema via Schema Attestation 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
 <meta content="security" name="keyword">
@@ -1081,7 +1081,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This specification defines request and response formats for Attesting Issuers and Verifiers for individual Verifiable
-Credential Schema via a Schema Attestation<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+Credential Schema via Schema Attestation<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1333,7 +1333,7 @@ verifiers and other external software and tooling to determine if a Credential c
       </h2>
 <p id="section-2-1">The Schema Attestation is a Selective Disclosure JWT <span>[<a href="#I-D.ietf-oauth-selective-disclosure-jwt" class="cite xref">I-D.ietf-oauth-selective-disclosure-jwt</a>]</span> which attests to the
 validity to issue or verify a Verifiable Credential of a specific Schema.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<div id="Schema-attestation-claims">
+<div id="schema-attestation-claims">
 <section id="section-2.1">
         <h3 id="name-schema-attestation-claims">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-schema-attestation-claims" class="section-name selfRef">Schema Attestation Claims</a>
@@ -1373,10 +1373,9 @@ Attestation JWTs<a href="#section-2.1-3" class="pilcrow">¶</a></p>
           </h4>
 <p id="section-2.1.1-1">The Selective Disclosure JWT Response <span class="bcp14">SHOULD</span> use Decoy Digests to disguise the actual number of authorized issuers
 and verifiers.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1.1-2">The <code>iat</code>, <code>nbf</code> and <code>exp</code> claims <span class="bcp14">MUST NOT</span> be Selectively Disclosable in SD-JWT responses where provided.<a href="#section-2.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.1.1-3">The <code>iss</code>, <code>sub</code>, <code>sub#integrity</code> and <code>nonce</code> claims <span class="bcp14">MUST NOT</span> be Selectively Disclosable.<a href="#section-2.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-2.1.1-4">The <code>authorized_issuers</code> and <code>authorized_verifiers</code> claims <span class="bcp14">SHOULD</span> be Selectively Disclosable, all array values of
-<code>authorized_issuers</code> and <code>authorized_verifiers</code> <span class="bcp14">SHOULD</span> be Selectively Disclosable.<a href="#section-2.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1.1-2">The <code>iat</code>, <code>nbf</code>, <code>exp</code>, <code>iss</code>, <code>sub</code>, <code>sub#integrity</code> and <code>nonce</code> claims <span class="bcp14">MUST NOT</span> be Selectively Disclosable.<a href="#section-2.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1.1-3">The <code>authorized_issuers</code> and <code>authorized_verifiers</code> claims <span class="bcp14">SHOULD</span> be Selectively Disclosable, all array values of
+<code>authorized_issuers</code> and <code>authorized_verifiers</code> <span class="bcp14">SHOULD</span> be Selectively Disclosable.<a href="#section-2.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="examples">
@@ -1487,14 +1486,14 @@ as an SD-JWT with <code>authorized_issuers</code> and <code>authorized_verifiers
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-schema-attestation-well-kno" class="section-name selfRef">Schema Attestation Well-known Endpoint</a>
         </h3>
 <p id="section-3.1-1">Schema designers <span class="bcp14">MAY</span> make a Schema Attestation available at the location formed by inserting the well known
-string <code>/.well-known/Schema-attestation</code> between the host component and the path component of the Schema URL.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+string <code>/.well-known/schema-attestation</code> between the host component and the path component of the Schema URL.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">If a Schema Attestation is not made available at the well-known address, trust  <span class="bcp14">SHOULD</span> defer back to other
 methods for determining trust.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">Requests to the well-known Schema Attestation Endpoint <span class="bcp14">MUST</span> be made via a <code>HTTP POST</code> Request.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <p id="section-3.1-4">The following is a non-normative example of a HTTP request for the Schema Attestation
 when the Schema url is <code>http://example.com/example-credential.json</code><a href="#section-3.1-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.1-5">
-<pre>POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
+<pre>POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 
 </pre><a href="#section-3.1-5" class="pilcrow">¶</a>
@@ -1521,7 +1520,7 @@ Host: example.com
 <p id="section-3.2-3">The following is a non-normative example of a HTTP request for the Schema Attestation requesting attestation
 information for an issuer <code>http://example.com/issuer</code><a href="#section-3.2-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.2-4">
-<pre>POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
+<pre>POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 Content-Type: application/x-www-form-urlencoded
 
@@ -1556,8 +1555,8 @@ QWXdLS0oxTDdBUnVpX05hMnBqZ3JZQ2lzSFlkbUlqayJdLCAiaXNzIjogImh0dHBzOi8
 vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
 zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
 pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.OCeFUWcgxbyOIzTiOi3tabX
-dUCiRBXHolamlAX3uRISzYl2xzIIddHqntuwG7_KSi45L_CdGmaqbbiN0IykOkA~WyJl
+gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.sa9hV_AL7iAbNbXO4Jo-zQ6
+B4SQ0QiZ33jAHY6Vl-3Ap_DGJqU7AG9UGvhH73RvJjrkJT0ejiVB7ZW2qdAeEjw~WyJl
 bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
 LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
 XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
@@ -1588,12 +1587,12 @@ receive when resolving Selective Disclosures in a Schema Attestation.<a href="#s
         <h3 id="name-jose-header">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-jose-header" class="section-name selfRef">JOSE Header</a>
         </h3>
-<p id="section-4.2-1">The <code>typ</code> value in the JOSE Header <span class="bcp14">MUST</span> be <code>Schema-attestation+sd-jwt</code>.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">The <code>typ</code> value in the JOSE Header <span class="bcp14">MUST</span> be <code>schema-attestation+sd-jwt</code>.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">The following is a non-normative example of a decoded SD-JWT header:<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.2-3">
 <pre>{
   "alg": "ES256",
-  "typ": "Schema-attestation+sd-jwt"
+  "typ": "schema-attestation+sd-jwt"
 }
 
 </pre><a href="#section-4.2-3" class="pilcrow">¶</a>
@@ -1755,7 +1754,7 @@ imitation credentials <span class="bcp14">MAY</span> be provided and cannot be r
           <li class="normal" id="appendix-A.1-1.3">Change Controller: IETF<a href="#appendix-A.1-1.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-1.4">
-            <p id="appendix-A.1-1.4.1">Specification Document(s): [[ <a href="#Schema-attestation-claims" class="auto internal xref">Section 2.1</a> of this specification ]]<a href="#appendix-A.1-1.4.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.1-1.4.1">Specification Document(s): [[ <a href="#schema-attestation-claims" class="auto internal xref">Section 2.1</a> of this specification ]]<a href="#appendix-A.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.1-1.5">
             <p id="appendix-A.1-1.5.1">Claim Name: "authorized_issuers"<a href="#appendix-A.1-1.5.1" class="pilcrow">¶</a></p>
@@ -1767,7 +1766,7 @@ imitation credentials <span class="bcp14">MAY</span> be provided and cannot be r
             <p id="appendix-A.1-1.7.1">Change Controller: IETF<a href="#appendix-A.1-1.7.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.1-1.8">
-            <p id="appendix-A.1-1.8.1">Specification Document(s): [[ <a href="#Schema-attestation-claims" class="auto internal xref">Section 2.1</a> of this specification ]]<a href="#appendix-A.1-1.8.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.1-1.8.1">Specification Document(s): [[ <a href="#schema-attestation-claims" class="auto internal xref">Section 2.1</a> of this specification ]]<a href="#appendix-A.1-1.8.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.1-1.9">
             <p id="appendix-A.1-1.9.1">Claim Name: "authorized_verifiers"<a href="#appendix-A.1-1.9.1" class="pilcrow">¶</a></p>
@@ -1779,7 +1778,7 @@ imitation credentials <span class="bcp14">MAY</span> be provided and cannot be r
             <p id="appendix-A.1-1.11.1">Change Controller: IETF<a href="#appendix-A.1-1.11.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.1-1.12">
-            <p id="appendix-A.1-1.12.1">Specification Document(s): [[ <a href="#Schema-attestation-claims" class="auto internal xref">Section 2.1</a> of this specification ]]<a href="#appendix-A.1-1.12.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.1-1.12.1">Specification Document(s): [[ <a href="#schema-attestation-claims" class="auto internal xref">Section 2.1</a> of this specification ]]<a href="#appendix-A.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>

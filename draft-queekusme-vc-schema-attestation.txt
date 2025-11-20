@@ -15,7 +15,7 @@ Abstract
 
    This specification defines request and response formats for Attesting
    Issuers and Verifiers for individual Verifiable Credential Schema via
-   a Schema Attestation
+   Schema Attestation
 
 Discussion Venues
 
@@ -183,11 +183,8 @@ Table of Contents
    The Selective Disclosure JWT Response SHOULD use Decoy Digests to
    disguise the actual number of authorized issuers and verifiers.
 
-   The iat, nbf and exp claims MUST NOT be Selectively Disclosable in
-   SD-JWT responses where provided.
-
-   The iss, sub, sub#integrity and nonce claims MUST NOT be Selectively
-   Disclosable.
+   The iat, nbf, exp, iss, sub, sub#integrity and nonce claims MUST NOT
+   be Selectively Disclosable.
 
    The authorized_issuers and authorized_verifiers claims SHOULD be
    Selectively Disclosable, all array values of authorized_issuers and
@@ -275,7 +272,7 @@ Table of Contents
 
    Schema designers MAY make a Schema Attestation available at the
    location formed by inserting the well known string /.well-known/
-   Schema-attestation between the host component and the path component
+   schema-attestation between the host component and the path component
    of the Schema URL.
 
    If a Schema Attestation is not made available at the well-known
@@ -289,7 +286,7 @@ Table of Contents
    Schema Attestation when the Schema url is http://example.com/example-
    credential.json
 
-   POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
+   POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
    Host: example.com
 
 3.2.  Request Parameters
@@ -308,7 +305,7 @@ Table of Contents
    Schema Attestation requesting attestation information for an issuer
    http://example.com/issuer
 
-   POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
+   POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
    Host: example.com
    Content-Type: application/x-www-form-urlencoded
 
@@ -335,8 +332,8 @@ Table of Contents
    vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
    zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
    pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.OCeFUWcgxbyOIzTiOi3tabX
-   dUCiRBXHolamlAX3uRISzYl2xzIIddHqntuwG7_KSi45L_CdGmaqbbiN0IykOkA~WyJl
+   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.sa9hV_AL7iAbNbXO4Jo-zQ6
+   B4SQ0QiZ33jAHY6Vl-3Ap_DGJqU7AG9UGvhH73RvJjrkJT0ejiVB7ZW2qdAeEjw~WyJl
    bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
    LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
    XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
@@ -359,13 +356,13 @@ Table of Contents
 
 4.2.  JOSE Header
 
-   The typ value in the JOSE Header MUST be Schema-attestation+sd-jwt.
+   The typ value in the JOSE Header MUST be schema-attestation+sd-jwt.
 
    The following is a non-normative example of a decoded SD-JWT header:
 
    {
      "alg": "ES256",
-     "typ": "Schema-attestation+sd-jwt"
+     "typ": "schema-attestation+sd-jwt"
    }
 
 5.  Verifying Schema Attestation
