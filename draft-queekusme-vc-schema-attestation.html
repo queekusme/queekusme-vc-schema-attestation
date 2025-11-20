@@ -1481,13 +1481,14 @@ as an SD-JWT with <code>authorized_issuers</code> and <code>authorized_verifiers
 string <code>/.well-known/schema-attestation</code> between the host component and the path component of the Schema URL.<a href="#section-2.1.2-1" class="pilcrow">¶</a></p>
 <p id="section-2.1.2-2">If a Schema Attestation Document is not made available at the well-known address, trust  <span class="bcp14">SHOULD</span> defer back to other
 methods for determining trust.<a href="#section-2.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-2.1.2-3">The following is a non-normative example of an HTTP request for the Schema Attestation Document
-when the Schema Document url is <code>http://example.com/example-credential.json</code><a href="#section-2.1.2-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-2.1.2-4">
-<pre>GET /.well-known/schema-attestation/example-credential.json HTTP/1.1
+<p id="section-2.1.2-3">Requests to the well-known Schema Attestation Document Endpoint <span class="bcp14">MUST</span> be made via a <code>HTTP POST</code> Request.<a href="#section-2.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.1.2-4">The following is a non-normative example of a HTTP request for the Schema Attestation Document
+when the Schema Document url is <code>http://example.com/example-credential.json</code><a href="#section-2.1.2-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1.2-5">
+<pre>POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 
-</pre><a href="#section-2.1.2-4" class="pilcrow">¶</a>
+</pre><a href="#section-2.1.2-5" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -1508,7 +1509,7 @@ Host: example.com
               <code>nonce</code>: <span class="bcp14">REQUIRED</span>. A nonce ensuring the freshness of the signature in JWT responses<a href="#section-2.1.3-2.3" class="pilcrow">¶</a>
 </li>
           </ul>
-<p id="section-2.1.3-3">The following is a non-normative example of an HTTP request for the Schema Attestation Document requesting attestation
+<p id="section-2.1.3-3">The following is a non-normative example of a HTTP request for the Schema Attestation Document requesting attestation
 information for an issuer <code>http://example.com/issuer</code><a href="#section-2.1.3-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1.3-4">
 <pre>POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
@@ -1546,8 +1547,8 @@ QWXdLS0oxTDdBUnVpX05hMnBqZ3JZQ2lzSFlkbUlqayJdLCAiaXNzIjogImh0dHBzOi8
 vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
 zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
 pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.4eOeTqs5xP7QGqb28eDIJbr
-qiuILnTONADkZhiZ1yQO_Ezs55nSHIV7Wn8665VikkPVYUft_i6XkA5eUJwBw-w~WyJl
+gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.zPM9_8aHNyObb5-pA9Stqdg
+BUV21hrvJaT_q5Fk5h1zk5R9XjOIqbny5gV8cJYjfILF1KyWNVL7M5omWXJVOgw~WyJl
 bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
 LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
 XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
