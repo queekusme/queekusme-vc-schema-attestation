@@ -323,7 +323,7 @@ Table of Contents
 
    The following is a non-normative example of a Schema Attestation
    Response including Disclosures for attesting issuer
-   http://example.com/issuer provided via request parameters"
+   http://example.com/issuer provided via request parameters.
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogInNjaGVtYS1hdHRlc3RhdGlvbitzZC1qd3Qi
    LCAia2lkIjogImRvYy1zaWduZXItMDUtMjUtMjAyMiJ9.eyJfc2QiOiBbImRUc1p5U2p
@@ -332,8 +332,8 @@ Table of Contents
    vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsICJleHAiOiAxODg
    zMDAwMDAwLCAic3ViIjogImh0dHA6Ly9leGFtcGxlLmNvbS9leGFtcGxlLWNyZWRlbnR
    pYWwuanNvbiIsICJzdWIjaW50ZWdyaXR5IjogIlRPRE86IEdldCBhIGhhc2ggdmFsdWU
-   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.sa9hV_AL7iAbNbXO4Jo-zQ6
-   B4SQ0QiZ33jAHY6Vl-3Ap_DGJqU7AG9UGvhH73RvJjrkJT0ejiVB7ZW2qdAeEjw~WyJl
+   gZm9yIGhlcmUiLCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.2Ual9Cwm8zynRSfQlwFke07
+   OhBFTxmmypaaRKJadJF7BN2yaZsJKw2_ixau--5sM8eYKZmu0do_TfrYy1JsYRw~WyJl
    bHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImF1dGhvcml6ZWRfaXNzdWVycyIsIFt7Ii4u
    LiI6ICJXem1Va1dFa1d4OVhHT3hmMUhYOFRpSWdJQ2pRek02ckVwR0lyR1M2YlVZIn1d
    XQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImh0dHA6Ly9leGFtcGxlLmNvbS9pc
