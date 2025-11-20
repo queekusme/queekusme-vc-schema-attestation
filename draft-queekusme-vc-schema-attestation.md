@@ -137,11 +137,13 @@ string `/.well-known/schema-attestation` between the host component and the path
 If a Schema Attestation Document is not made available at the well-known address, trust  **SHOULD** defer back to other
 methods for determining trust.
 
-The following is a non-normative example of an HTTP request for the Schema Attestation Document
+Requests to the well-known Schema Attestation Document Endpoint **MUST** be made via a `HTTP POST` Request.
+
+The following is a non-normative example of a HTTP request for the Schema Attestation Document
 when the Schema Document url is `http://example.com/example-credential.json`
 
 ```
-GET /.well-known/schema-attestation/example-credential.json HTTP/1.1
+POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 ```
 ### Request Parameters
@@ -152,7 +154,7 @@ The following parameters are defined to be included in the request to the Reques
 * `verifier`: **OPTIONAL**. The Verifier to receive attestation information for if present in the Attestation Document
 * `nonce`: **REQUIRED**. A nonce ensuring the freshness of the signature in JWT responses
 
-The following is a non-normative example of an HTTP request for the Schema Attestation Document requesting attestation
+The following is a non-normative example of a HTTP request for the Schema Attestation Document requesting attestation
 information for an issuer `http://example.com/issuer`
 
 ```
