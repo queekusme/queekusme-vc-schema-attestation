@@ -86,7 +86,7 @@ to the validity to issue or verify a Verifiable Credential of a specific Schema.
 
 The specification defines the following JWT claims:
 
-* `iss`: **REQUIRED**. The issuer of the document, **MUST** be a [@W3C.DID] identifier
+* `iss`: **REQUIRED**. The issuer of the document
 * `sub`: **REQUIRED**. The string schema document URL. This being the [@W3C.VCDM] `credentialSchema`.`id` URL or
   the [@!I-D.ietf-oauth-sd-jwt-vc] `vct` URL.
 * `sub#integrity`: **REQUIRED**. A string containing the [@!W3C.SRI] integrity of the Schema Document this Attestation
@@ -295,43 +295,6 @@ Verifiers **SHOULD** ensure that the Schema in use within a Verifiable Credentia
         </author>
         <title>OpenID for Verifiable Presentations 1.0</title>
         <date day="9" month="July" year="2025"/>
-    </front>
-</reference>
-
-<reference anchor="W3C.DID" target="https://www.w3.org/TR/did-1.0/">
-    <front>
-        <author initials="M." surname="Sporny" fullname="Manu Sporny">
-            <organization>
-                <organizationName>Digital Bazaar</organizationName>
-            </organization>
-        </author>
-        <author initials="D." surname="Longley" fullname="Dave Longley">
-            <organization>
-                <organizationName>Digital Bazaar</organizationName>
-            </organization>
-        </author>
-        <author initials="M." surname="Sabadello" fullname="Markus Sabadello">
-            <organization>
-                <organizationName>Danube Tech</organizationName>
-            </organization>
-        </author>
-        <author initials="D." surname="Reed" fullname="Drummond Reed">
-            <organization>
-                <organizationName>Evernym/Avast</organizationName>
-            </organization>
-        </author>
-        <author initials="O." surname="Steele" fullname="Orie Steele">
-            <organization>
-                <organizationName>Transmute</organizationName>
-            </organization>
-        </author>
-        <author initials="C." surname="Allen" fullname="Christopher Allen">
-            <organization>
-                <organizationName>Blockchain Commons</organizationName>
-            </organization>
-        </author>
-        <title>Decentralized Identifiers (DIDs) v1.0</title>
-        <date day="19" month="July" year="2022"/>
     </front>
 </reference>
 
