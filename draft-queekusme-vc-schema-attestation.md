@@ -77,12 +77,10 @@ Both [@W3C.VCDM] and [@!I-D.ietf-oauth-sd-jwt-vc] permit schema document definit
 
 # Verifiable Credential Schema Attestation Document
 
-## Schema Attestation Document
-
 The Schema Attestation Document is a Selective Disclosure JWT [@!I-D.ietf-oauth-selective-disclosure-jwt] which attests
 to the validity to issue or verify a Verifiable Credential of a specific Schema.
 
-### Schema Attestation Document Claims {#schema-attestation-claims}
+## Schema Attestation Document Claims {#schema-attestation-claims}
 
 The specification defines the following JWT claims:
 
@@ -101,7 +99,7 @@ The specification defines the following JWT claims:
 JWT claims `iat`, `nbf` and `exp` **SHOULD** be used to establish timeframes for the acceptance and disposal of expired
 Attestation JWTs
 
-#### Selective Disclosure
+### Selective Disclosure
 
 The Selective Disclosure JWT Response **SHOULD** use Decoy Digests to disguise the actual number of authorized issuers
 and verifiers.
@@ -113,7 +111,7 @@ The `iss`, `sub`, `sub#integrity` and `nonce` claims **MUST NOT** be Selectively
 The `authorized_issuers` and `authorized_verifiers` claims **SHOULD** be Selectively Disclosable, all array values of
 `authorized_issuers` and `authorized_verifiers` **SHOULD** be Selectively Disclosable.
 
-#### Examples
+### Examples
 
 The following is a non-normative example of the raw attestation data of an unsecured payload of a Schema Attestation
 Document:
@@ -129,7 +127,8 @@ The following are the Disclosures belonging to the SD-JWT payload above:
 
 {{examples/01/disclosures.md}}
 
-### Schema Document Attestation Well-known Endpoint {#schema-document-well-known}
+# Schema Attestation Document Request
+## Schema Document Attestation Well-known Endpoint {#schema-document-well-known}
 
 Schema designers **MAY** make a Schema Attestation Document available at the location formed by inserting the well known
 string `/.well-known/schema-attestation` between the host component and the path component of the Schema URL.
@@ -146,7 +145,7 @@ when the Schema Document url is `http://example.com/example-credential.json`
 POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 ```
-### Request Parameters
+## Request Parameters
 
 The following parameters are defined to be included in the request to the Request URI Endpoint:
 
@@ -165,14 +164,14 @@ Content-Type: application/x-www-form-urlencoded
 issuer=http%3A%2F%2Fexample.com%2Fissuer
 ```
 
-## Schema Attestation Document Response
+# Schema Attestation Document Response
 
 A successful response **MUST** use the `200 OK HTTP`. The Content-Type header **MUST** be `application/sd-jwt`.
 
 The document **MUST** return any issuer or verifier Disclosure matching the issuer or verifier provided in any Request
 Parameters.
 
-### Example
+## Example
 
 The following is a non-normative example of a Schema Attestation Document Response including Disclosures for attesting
 issuer `http://example.com/issuer` provided via request parameters"
@@ -184,7 +183,7 @@ receive when resolving Selective Disclosures in a Schema Attestation Document.
 
 <{{examples/01/verified_contents.json}}
 
-### JOSE Header
+## JOSE Header
 
 The `typ` value in the JOSE Header **MUST** be `schema-attestation+sd-jwt`.
 
@@ -197,20 +196,20 @@ The following is a non-normative example of a decoded SD-JWT header:
 }
 ```
 
-## Verifying Schema Attestation Documents
+# Verifying Schema Attestation Documents
 
 Recipients of a Schema Attestation Document **MUST** verify the returned SD-JWT.
 
 Verification of the issuer of a Schema Attestation Document **MUST** follow current Best Practices for verifying JWT
 signatures.
 
-### Verifying Issuers in `authorized_issuers`
+## Verifying Issuers in `authorized_issuers`
 
 For an Issuer to be attested as Authorized to issue a Credential matching the respective Schema the value in the
 `issuer` claim of a [@W3C.VCDM] Credential or the `iss` claim of a [@!I-D.ietf-oauth-sd-jwt-vc] Credential **MUST** be
 present in the `authorized_issuers` array.
 
-### Verifying verifiers in `authorized_verifiers`
+## Verifying verifiers in `authorized_verifiers`
 
 For a verifier to be attested as Authorised to receive a Credential matching the respective Schema the value in the
 `authorized_verifiers` array **MUST** match one of the following:
@@ -219,7 +218,7 @@ For a verifier to be attested as Authorised to receive a Credential matching the
   match the value in `authorized_verifiers`
 * TODO: Identify other methods for identifying verifiers within a credential request
 
-## Schema Extension
+# Schema Extension
 
 [@!I-D.ietf-oauth-sd-jwt-vc] permits `vct` documents to extend from another `vct` document. As a Schema Attestation
 Document attests for a specific version of a Schema document, the document the `vct` extends from **MAY** have its own
