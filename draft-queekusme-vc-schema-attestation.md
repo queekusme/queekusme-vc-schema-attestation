@@ -24,7 +24,7 @@ fullname="Annabelle Kennedy"
 .# Abstract
 
 This specification defines request and response formats for Attesting Issuers and Verifiers for individual Verifiable
-Credential Schema via a Schema Attestation
+Credential Schema via Schema Attestation
 
 {mainmatter}
 
@@ -80,7 +80,7 @@ Both [@W3C.VCDM] and [@!I-D.ietf-oauth-sd-jwt-vc] permit Schema Definition via U
 The Schema Attestation is a Selective Disclosure JWT [@!I-D.ietf-oauth-selective-disclosure-jwt] which attests to the
 validity to issue or verify a Verifiable Credential of a specific Schema.
 
-## Schema Attestation Claims {#Schema-attestation-claims}
+## Schema Attestation Claims {#schema-attestation-claims}
 
 The specification defines the following JWT claims:
 
@@ -104,9 +104,7 @@ Attestation JWTs
 The Selective Disclosure JWT Response **SHOULD** use Decoy Digests to disguise the actual number of authorized issuers
 and verifiers.
 
-The `iat`, `nbf` and `exp` claims **MUST NOT** be Selectively Disclosable in SD-JWT responses where provided.
-
-The `iss`, `sub`, `sub#integrity` and `nonce` claims **MUST NOT** be Selectively Disclosable.
+The `iat`, `nbf`, `exp`, `iss`, `sub`, `sub#integrity` and `nonce` claims **MUST NOT** be Selectively Disclosable.
 
 The `authorized_issuers` and `authorized_verifiers` claims **SHOULD** be Selectively Disclosable, all array values of
 `authorized_issuers` and `authorized_verifiers` **SHOULD** be Selectively Disclosable.
@@ -130,7 +128,7 @@ The following are the Disclosures belonging to the SD-JWT payload above:
 ## Schema Attestation Well-known Endpoint {#Schema-document-well-known}
 
 Schema designers **MAY** make a Schema Attestation available at the location formed by inserting the well known
-string `/.well-known/Schema-attestation` between the host component and the path component of the Schema URL.
+string `/.well-known/schema-attestation` between the host component and the path component of the Schema URL.
 
 If a Schema Attestation is not made available at the well-known address, trust  **SHOULD** defer back to other
 methods for determining trust.
@@ -141,7 +139,7 @@ The following is a non-normative example of a HTTP request for the Schema Attest
 when the Schema url is `http://example.com/example-credential.json`
 
 ```
-POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
+POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 ```
 ## Request Parameters
@@ -156,7 +154,7 @@ The following is a non-normative example of a HTTP request for the Schema Attest
 information for an issuer `http://example.com/issuer`
 
 ```
-POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
+POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 Content-Type: application/x-www-form-urlencoded
 
@@ -184,14 +182,14 @@ receive when resolving Selective Disclosures in a Schema Attestation.
 
 ## JOSE Header
 
-The `typ` value in the JOSE Header **MUST** be `Schema-attestation+sd-jwt`.
+The `typ` value in the JOSE Header **MUST** be `schema-attestation+sd-jwt`.
 
 The following is a non-normative example of a decoded SD-JWT header:
 
 ```
 {
   "alg": "ES256",
-  "typ": "Schema-attestation+sd-jwt"
+  "typ": "schema-attestation+sd-jwt"
 }
 ```
 
@@ -360,17 +358,17 @@ Verifiers **SHOULD** ensure that the Schema in use within a Verifiable Credentia
 - Claim Name: "sub#integrity"
 - Claim Description: JWT VC sub claim "integrity metadata" value
 - Change Controller: IETF
-- Specification Document(s): [[ (#Schema-attestation-claims) of this specification ]]
+- Specification Document(s): [[ (#schema-attestation-claims) of this specification ]]
 
 - Claim Name: "authorized_issuers"
 - Claim Description: Authorized Issuers for a specific VC Schema
 - Change Controller: IETF
-- Specification Document(s): [[ (#Schema-attestation-claims) of this specification ]]
+- Specification Document(s): [[ (#schema-attestation-claims) of this specification ]]
 
 - Claim Name: "authorized_verifiers"
 - Claim Description: Authorized Verifiers for a specific VC Schema
 - Change Controller: IETF
-- Specification Document(s): [[ (#Schema-attestation-claims) of this specification ]]
+- Specification Document(s): [[ (#schema-attestation-claims) of this specification ]]
 
 ## Well-Known URI Registry
 
