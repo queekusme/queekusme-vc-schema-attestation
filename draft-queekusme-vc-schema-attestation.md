@@ -24,7 +24,7 @@ fullname="Annabelle Kennedy"
 .# Abstract
 
 This specification defines request and response formats for Attesting Issuers and Verifiers for individual Verifiable
-Credential Schema via a Schema Attestation Document
+Credential Schema via a Schema Attestation
 
 {mainmatter}
 
@@ -61,33 +61,33 @@ Verifiable Credential (VC):
 :  An assertion with claims about a Subject that is cryptographically secured by an Issuer (usually by a digital
    signature).
 
-## Verifiable Credential Schema documents
+## Verifiable Credential Schema
 
 Verifiable Credential Schema are documents which define the structure of verifiable credentials in a manner which allows
-verifiers and other external software and tooling to determine if a Credential conforms to the schema design.
+verifiers and other external software and tooling to determine if a Credential conforms to the Schema design.
 
-The Verifiable Credential formats which utilize schema documents are:
+The Verifiable Credential formats which utilize Schema are:
 
 - W3C Verifiable Credential Data Model (VCDM) 2.0 [@W3C.VCDM] which uses JSON-LD as its structure definition
 - SD-JWT-based Verifiable Credentials [@!I-D.ietf-oauth-sd-jwt-vc] which uses its own defined `vct` structure definition.
 
 MDoc Credential formats are outside of the scope of this document
 
-Both [@W3C.VCDM] and [@!I-D.ietf-oauth-sd-jwt-vc] permit schema document definition via URL request.
+Both [@W3C.VCDM] and [@!I-D.ietf-oauth-sd-jwt-vc] permit Schema Definition via URL request.
 
-# Verifiable Credential Schema Attestation Document
+# Verifiable Credential Schema Attestation
 
-The Schema Attestation Document is a Selective Disclosure JWT [@!I-D.ietf-oauth-selective-disclosure-jwt] which attests
-to the validity to issue or verify a Verifiable Credential of a specific Schema.
+The Schema Attestation is a Selective Disclosure JWT [@!I-D.ietf-oauth-selective-disclosure-jwt] which attests to the
+validity to issue or verify a Verifiable Credential of a specific Schema.
 
-## Schema Attestation Document Claims {#schema-attestation-claims}
+## Schema Attestation Claims {#Schema-attestation-claims}
 
 The specification defines the following JWT claims:
 
 * `iss`: **REQUIRED**. The issuer of the document
-* `sub`: **REQUIRED**. The string schema document URL. This being the [@W3C.VCDM] `credentialSchema`.`id` URL or
+* `sub`: **REQUIRED**. The string Schema URL. This being the [@W3C.VCDM] `credentialSchema`.`id` URL or
   the [@!I-D.ietf-oauth-sd-jwt-vc] `vct` URL.
-* `sub#integrity`: **REQUIRED**. A string containing the [@!W3C.SRI] integrity of the Schema Document this Attestation
+* `sub#integrity`: **REQUIRED**. A string containing the [@!W3C.SRI] integrity of the Schema this Attestation
   points to.
 * `authorized_issuers`: **OPTIONAL**. An array of strings containing the issuers which are authorised to issue credentials
   matching the Schema. `authorized_issuers` **MAY** be an empty array.
@@ -113,8 +113,7 @@ The `authorized_issuers` and `authorized_verifiers` claims **SHOULD** be Selecti
 
 ### Examples
 
-The following is a non-normative example of the raw attestation data of an unsecured payload of a Schema Attestation
-Document:
+The following is a non-normative example of the raw attestation data of an unsecured payload of a Schema Attestation:
 
 <{{examples/01/user_claims.json}}
 
@@ -127,44 +126,44 @@ The following are the Disclosures belonging to the SD-JWT payload above:
 
 {{examples/01/disclosures.md}}
 
-# Schema Attestation Document Request
-## Schema Document Attestation Well-known Endpoint {#schema-document-well-known}
+# Schema Attestation Request
+## Schema Attestation Well-known Endpoint {#Schema-document-well-known}
 
-Schema designers **MAY** make a Schema Attestation Document available at the location formed by inserting the well known
-string `/.well-known/schema-attestation` between the host component and the path component of the Schema URL.
+Schema designers **MAY** make a Schema Attestation available at the location formed by inserting the well known
+string `/.well-known/Schema-attestation` between the host component and the path component of the Schema URL.
 
-If a Schema Attestation Document is not made available at the well-known address, trust  **SHOULD** defer back to other
+If a Schema Attestation is not made available at the well-known address, trust  **SHOULD** defer back to other
 methods for determining trust.
 
-Requests to the well-known Schema Attestation Document Endpoint **MUST** be made via a `HTTP POST` Request.
+Requests to the well-known Schema Attestation Endpoint **MUST** be made via a `HTTP POST` Request.
 
-The following is a non-normative example of a HTTP request for the Schema Attestation Document
-when the Schema Document url is `http://example.com/example-credential.json`
+The following is a non-normative example of a HTTP request for the Schema Attestation
+when the Schema url is `http://example.com/example-credential.json`
 
 ```
-POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
+POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 ```
 ## Request Parameters
 
 The following parameters are defined to be included in the request to the Request URI Endpoint:
 
-* `issuer`: **OPTIONAL**. The Issuer to receive attestation information for if present in the Attestation Document
-* `verifier`: **OPTIONAL**. The Verifier to receive attestation information for if present in the Attestation Document
+* `issuer`: **OPTIONAL**. The Issuer to receive attestation information for if present in the Schema Attestation
+* `verifier`: **OPTIONAL**. The Verifier to receive attestation information for if present in the Schema Attestation
 * `nonce`: **REQUIRED**. A nonce ensuring the freshness of the signature in JWT responses
 
-The following is a non-normative example of a HTTP request for the Schema Attestation Document requesting attestation
+The following is a non-normative example of a HTTP request for the Schema Attestation requesting attestation
 information for an issuer `http://example.com/issuer`
 
 ```
-POST /.well-known/schema-attestation/example-credential.json HTTP/1.1
+POST /.well-known/Schema-attestation/example-credential.json HTTP/1.1
 Host: example.com
 Content-Type: application/x-www-form-urlencoded
 
 issuer=http%3A%2F%2Fexample.com%2Fissuer
 ```
 
-# Schema Attestation Document Response
+# Schema Attestation Response
 
 A successful response **MUST** use the `200 OK HTTP`. The Content-Type header **MUST** be `application/sd-jwt`.
 
@@ -173,34 +172,34 @@ Parameters.
 
 ## Example
 
-The following is a non-normative example of a Schema Attestation Document Response including Disclosures for attesting
+The following is a non-normative example of a Schema Attestation Response including Disclosures for attesting
 issuer `http://example.com/issuer` provided via request parameters"
 
 <{{examples/01/sd_jwt_presentation.txt}}
 
-Below is a non-normative example of the verified SD-JWT claims the recipient of a Schema Attestation Document would
-receive when resolving Selective Disclosures in a Schema Attestation Document.
+Below is a non-normative example of the verified SD-JWT claims the recipient of a Schema Attestation would
+receive when resolving Selective Disclosures in a Schema Attestation.
 
 <{{examples/01/verified_contents.json}}
 
 ## JOSE Header
 
-The `typ` value in the JOSE Header **MUST** be `schema-attestation+sd-jwt`.
+The `typ` value in the JOSE Header **MUST** be `Schema-attestation+sd-jwt`.
 
 The following is a non-normative example of a decoded SD-JWT header:
 
 ```
 {
   "alg": "ES256",
-  "typ": "schema-attestation+sd-jwt"
+  "typ": "Schema-attestation+sd-jwt"
 }
 ```
 
-# Verifying Schema Attestation Documents
+# Verifying Schema Attestation
 
-Recipients of a Schema Attestation Document **MUST** verify the returned SD-JWT.
+Recipients of a Schema Attestation **MUST** verify the returned SD-JWT.
 
-Verification of the issuer of a Schema Attestation Document **MUST** follow current Best Practices for verifying JWT
+Verification of the issuer of a Schema Attestation **MUST** follow current Best Practices for verifying JWT
 signatures.
 
 ## Verifying Issuers in `authorized_issuers`
@@ -221,19 +220,18 @@ For a verifier to be attested as Authorised to receive a Credential matching the
 # Schema Extension
 
 [@!I-D.ietf-oauth-sd-jwt-vc] permits `vct` documents to extend from another `vct` document. As a Schema Attestation
-Document attests for a specific version of a Schema document, the document the `vct` extends from **MAY** have its own
-attestation document.
+attests for a specific version of a Schema, the document the `vct` extends from **MAY** have its own Schema Attestation.
 
-Schema Document Requests **MUST NOT** inherit Attestation from higher order Schema Attestation Documents.
+Schema Requests **MUST NOT** inherit Attestation from higher order Schema Attestation.
 
 # Security Considerations
 
 ## Issuer/Verifier Request for Information Discovery
 
-Requests to the well-known endpoint **MAY** use the `issuer` and `verifier` Request parameters in order to perform
-information discovery on the Disclosures within a the Attestation Document.
+Requests to the well-known endpoint **MAY** use the `issuer` and `verifier` Request Parameters in order to perform
+information discovery on the Disclosures within a Schema Attestation.
 
-Schema Attestation Document Providers **SHOULD** make effort to prevent Information Discovery utilizing methods such as
+Schema Attestation Providers **SHOULD** make effort to prevent Information Discovery utilizing methods such as
 Rate Limiting.
 
 Nonce values which are reused **SHOULD** be rejected if multiple requests from the same requester are received with the
@@ -241,12 +239,12 @@ same nonce value.
 
 ## Schema Extension as a method for attaining a trusted status.
 
-An attacker **MAY** extend a known Schema document and provide their own Schema Attestation document in order to show
+An attacker **MAY** extend a known Schema and provide their own Schema Attestation in order to show
 themselves as 'verified' to Wallets and Verifiers.
 
-Whilst extension remains a valid method for building upon existing schema, Wallets **SHOULD NOT** treat extended
+Whilst extension remains a valid method for building upon existing Schema, Wallets **SHOULD NOT** treat extended
 documents as an attempt to bypass trust. Wallets **SHOULD** show credentials with extended Schema as Trusted, so long as
-the issuer is correctly included as an `authorized_issuers` in the extended Schema's Schema Attestation Document.
+the issuer is correctly included as an `authorized_issuers` in the extended Schema's Schema Attestation.
 
 [@OAUTH.OID4VP] includes the specification for Digital Credentials Query Language (DCQL). DCQL introduces `meta` which
 allows for the specification of metadata associated with a Credential request.
@@ -362,21 +360,21 @@ Verifiers **SHOULD** ensure that the Schema in use within a Verifiable Credentia
 - Claim Name: "sub#integrity"
 - Claim Description: JWT VC sub claim "integrity metadata" value
 - Change Controller: IETF
-- Specification Document(s): [[ (#schema-attestation-claims) of this specification ]]
+- Specification Document(s): [[ (#Schema-attestation-claims) of this specification ]]
 
 - Claim Name: "authorized_issuers"
 - Claim Description: Authorized Issuers for a specific VC Schema
 - Change Controller: IETF
-- Specification Document(s): [[ (#schema-attestation-claims) of this specification ]]
+- Specification Document(s): [[ (#Schema-attestation-claims) of this specification ]]
 
 - Claim Name: "authorized_verifiers"
 - Claim Description: Authorized Verifiers for a specific VC Schema
 - Change Controller: IETF
-- Specification Document(s): [[ (#schema-attestation-claims) of this specification ]]
+- Specification Document(s): [[ (#Schema-attestation-claims) of this specification ]]
 
 ## Well-Known URI Registry
 
-This specification requests the well-known URI defined in (#schema-document-well-known)
+This specification requests the well-known URI defined in (#Schema-document-well-known)
 in the IANA "Well-Known URIs" registry [@IANA.well-known] established by [@!RFC5785].
 
 # Acknowledgements {#Acknowledgements}
