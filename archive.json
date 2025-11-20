@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-18T00:40:28.433867+00:00",
+  "timestamp": "2025-11-20T00:39:43.611688+00:00",
   "repo": "queekusme/queekusme-vc-schema-attestation",
   "labels": [
     {
@@ -49,6 +49,23 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOQWvXu87Y6Hrd",
+      "title": "Draft updates",
+      "url": "https://github.com/queekusme/queekusme-vc-schema-attestation/issues/1",
+      "state": "OPEN",
+      "author": "queekusme",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "- [ ] Remove the line about HTTP Accept headers\n- [ ] Require a POST request\n- [ ] Remove plain json responses\n- [ ] Make nonce required in request and response\n- [ ] Loosen the requirements for the attestation document `iss` claim to allow for any issuer which can be verified e.g. urls via a `.well-known/jwk.json` or via a registry\n- [ ] Indicate that failure to verify the attestation document indicates the data is not to be considered trusted\n- [ ] Include reference to what should happen if an SAD is not provided, aka wallets should fallback to existing methods for attesting issuers and verifiers\n- [ ] Add some examples, review sd-jwt tooling for generating examples at build time",
+      "createdAt": "2025-11-18T16:54:34Z",
+      "updatedAt": "2025-11-18T16:54:34Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": []
 }
