@@ -1,0 +1,17 @@
+user_claims:
+  sub: http://example.com/example-credential.json
+  "sub#integrity": "TODO: Get a hash value for here"
+  !sd authorized_issuers:
+    - !sd http://example.com/issuer
+  !sd authorized_verifiers:
+    - !sd http://example.com/verifier
+
+holder_disclosed_claims:
+  authorized_issuers:
+    - "http://example.com/issuer"
+
+key_binding: false
+
+extra_header_parameters:
+  kid: doc-signer-05-25-2022
+  typ: "schema-attestation+sd-jwt"
